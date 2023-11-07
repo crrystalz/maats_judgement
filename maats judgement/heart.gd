@@ -1,34 +1,29 @@
-extends Sprite2D
+extends Sprite
 
-# The weight of the heart
 var weight = 1
-
-# Variable to track if the heart is being dragged
 var being_dragged = false
+var drag_offset = Vector2()
 
-# Function called when the node enters the scene tree for the first time
 func _ready():
-	add_to_group("draggable")
-	pass  # Replace with function body.
+	# Assuming the child Area2D is named "HeartArea"
+	var area = get_node("HeartArea")
+	area.connect("input_event", self, "_on_HeartArea_input_event")
+	area.mouse_filter = Control.MOUSE_FILTER_STOP
+	pass # Replace with function body.
 
-# Input event function to detect dragging
-func _input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+func _on_HeartArea_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
 		if event.pressed:
-			# Begin dragging
 			being_dragged = true
-			# To drag the heart, we make sure it's always drawn on top while being dragged
+			# Calculate the offset from the sprite's position to the mouse click position
+			drag_offset = self.position - event.position
 			self.z_index = 1
 		else:
-			# End dragging
 			being_dragged = false
-			# Reset the z-index
 			self.z_index = 0
-			# Here you could add logic to 'snap' the heart to the scales
+			# Add logic to snap the heart to the scales if needed
 
-# Process function to move the heart while dragging
 func _process(delta):
 	if being_dragged:
-		# Follow the mouse position
-		var mouse_position = get_viewport().get_mouse_position()
-		self.position = mouse_position
+		# Use the offset so that the dragging feels more natural
+		self.position = get_global_mouse_position() + drag_offset
