@@ -8,6 +8,7 @@ var being_dragged = false
 
 # Function called when the node enters the scene tree for the first time
 func _ready():
+	add_to_group("draggable")
 	pass  # Replace with function body.
 
 # Input event function to detect dragging

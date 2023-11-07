@@ -1,28 +1,37 @@
-[gd_scene load_steps=6 format=3 uid="uid://dib5k6bluouqd"]
+[gd_scene load_steps=8 format=3 uid="uid://dib5k6bluouqd"]
 
 [ext_resource type="Texture2D" uid="uid://ckrmv71thqcg7" path="res://Sprites/scale.png" id="1_v1843"]
 [ext_resource type="Texture2D" uid="uid://cpxax6vug1b8y" path="res://Sprites/feather.png" id="2_antik"]
 [ext_resource type="Texture2D" uid="uid://c0jrw5p2h0y58" path="res://Sprites/heart.png" id="3_llk8t"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0pon"]
-size = Vector2(10088, 9997)
+[ext_resource type="Script" path="res://heart.gd" id="4_c0qd6"]
+[ext_resource type="Script" path="res://scalesarea.gd" id="4_t3sp3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l08km"]
 size = Vector2(9995, 9418)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0pon"]
+size = Vector2(10088, 9997)
+
 [node name="Game" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-14, 13)
+zoom = Vector2(0.02, 0.02)
 
 [node name="Scale" type="Sprite2D" parent="."]
 texture = ExtResource("1_v1843")
 
-[node name="Feather" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-8283, -245)
-texture = ExtResource("2_antik")
+[node name="ScalesArea" type="Area2D" parent="Scale"]
+script = ExtResource("4_t3sp3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scale/ScalesArea"]
+position = Vector2(-2.5, 311)
+shape = SubResource("RectangleShape2D_l08km")
 
 [node name="Heart" type="Sprite2D" parent="."]
 position = Vector2(11576, 572)
 texture = ExtResource("3_llk8t")
+script = ExtResource("4_c0qd6")
 
 [node name="Area2D" type="Area2D" parent="Heart"]
 
@@ -30,8 +39,6 @@ texture = ExtResource("3_llk8t")
 position = Vector2(0, 9.5)
 shape = SubResource("RectangleShape2D_d0pon")
 
-[node name="ScalesArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ScalesArea"]
-position = Vector2(-2.5, 311)
-shape = SubResource("RectangleShape2D_l08km")
+[node name="Feather" type="Sprite2D" parent="."]
+position = Vector2(-8283, -245)
+texture = ExtResource("2_antik")
