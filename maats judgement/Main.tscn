@@ -33,9 +33,9 @@ position = Vector2(11576, 572)
 texture = ExtResource("3_llk8t")
 script = ExtResource("4_c0qd6")
 
-[node name="Area2D" type="Area2D" parent="Heart"]
+[node name="HeartArea" type="Area2D" parent="Heart"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Heart/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Heart/HeartArea"]
 position = Vector2(0, 9.5)
 shape = SubResource("RectangleShape2D_d0pon")
 
