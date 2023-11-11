@@ -35,8 +35,7 @@ action_mode = 0
 
 [node name="Swinger" type="Node" parent="Heart"]
 script = ExtResource("4_3em7k")
-amp = 1.356
-decay = 1.0
+amp = 1.5708
 
 [node name="Feather" type="Sprite2D" parent="."]
 position = Vector2(-8283, -245)

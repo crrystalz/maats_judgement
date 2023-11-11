@@ -5,6 +5,8 @@ extends Sprite2D
 
 signal mouse_released
 
+var curr_rotation = 0
+
 var picked_up:bool = false :
 	set(b):
 		if not b:
@@ -24,8 +26,10 @@ func _process(delta):
 		
 	if Input.is_action_just_released("LMB"):
 		mouse_released.emit()
-		
-	sprite.rotation = swinger.get_swing()
+	
+	curr_rotation = swinger.get_swing()
+	print(curr_rotation)
+	sprite.rotation = curr_rotation
 
 
 func _on_button_pressed():
