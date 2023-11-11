@@ -1,27 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dib5k6bluouqd"]
+[gd_scene load_steps=6 format=3 uid="uid://dib5k6bluouqd"]
 
 [ext_resource type="Texture2D" uid="uid://ckrmv71thqcg7" path="res://Sprites/scale.png" id="1_v1843"]
 [ext_resource type="Texture2D" uid="uid://cpxax6vug1b8y" path="res://Sprites/feather.png" id="2_antik"]
 [ext_resource type="Texture2D" uid="uid://c0jrw5p2h0y58" path="res://Sprites/heart.png" id="3_llk8t"]
-
-[sub_resource type="GDScript" id="GDScript_cqqw5"]
-script/source = "extends Sprite2D
-
-var picked_up:
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func _on_button_pressed():
-	pass # Replace with function body.
-"
+[ext_resource type="Script" path="res://heart.gd" id="3_x06oy"]
+[ext_resource type="Script" path="res://swinger.gd" id="4_3em7k"]
 
 [node name="Game" type="Node2D"]
 
@@ -35,7 +18,7 @@ texture = ExtResource("1_v1843")
 [node name="Heart" type="Sprite2D" parent="."]
 position = Vector2(11576, 572)
 texture = ExtResource("3_llk8t")
-script = SubResource("GDScript_cqqw5")
+script = ExtResource("3_x06oy")
 
 [node name="Button" type="Button" parent="Heart"]
 self_modulate = Color(1, 1, 1, 0)
@@ -49,6 +32,11 @@ offset_bottom = -5000.0
 grow_horizontal = 2
 grow_vertical = 2
 action_mode = 0
+
+[node name="Swinger" type="Node" parent="Heart"]
+script = ExtResource("4_3em7k")
+amp = 1.356
+decay = 1.0
 
 [node name="Feather" type="Sprite2D" parent="."]
 position = Vector2(-8283, -245)
